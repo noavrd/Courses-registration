@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+// הוספתי אינום על מנת לוודא שאכן יתקבל רק אחד מ3 סוגי הקורסים ולא סוג אחר בטעות
+enum CourseType {
+    MANDATORY,
+    ELECTIVE,
+    SEMINAR
+}
+
 public class Course {
     private int id;
     private String name;
@@ -8,9 +15,9 @@ public class Course {
     private ArrayList<Student> students;
     private Professor professor;
     private Metargel metargel;
-    private String type;
+    private CourseType type;
 
-    public Course(int id, String name, int hoursLength, int studentsLimit, ArrayList<Student> students, Professor professor, Metargel metargel, String type) {
+    public Course(int id, String name, int hoursLength, int studentsLimit, ArrayList<Student> students, Professor professor, Metargel metargel, CourseType type) {
         this.id = id;
         this.name = name;
         this.hoursLength = hoursLength;
@@ -52,7 +59,7 @@ public class Course {
         return metargel;
     }
 
-    public String getType() {
+    public CourseType getType() {
         return type;
     }
 

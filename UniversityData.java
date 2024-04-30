@@ -21,7 +21,36 @@ public class UniversityData {
         if(instance == null){
             instance = new UniversityData();
         }
+
         return instance;
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public ArrayList<Professor> getProfessors() {
+        return professors;
+    }
+    
+    public ArrayList<Metargel> getMetargelim() {
+        return metargelim;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void addProfessor(Professor professor) {
+        professors.add(professor);
+    }
+
+    public void addMetargel(Metargel metargel) {
+        metargelim.add(metargel);
     }
 
 }

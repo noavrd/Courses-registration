@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Person {
+public class Person implements Observer{
     private int id;
     private String firstName;
     private String lastName;
@@ -29,6 +29,10 @@ public class Person {
     public String getLastName() {
         return lastName;
     }
+
+    public String getPassword() {
+        return password;
+    }
     
     public ArrayList<Course> getCourses() {
         return courses;
@@ -39,6 +43,11 @@ public class Person {
         for(Course course: this.courses){
             System.out.println(course.getName());
         }
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println("New message: " + message);
     }
 
 }

@@ -6,7 +6,7 @@ public class Professor extends Person {
         super(id, firstName, lastName, password, courses);
     }
 
-    public Course createCourse(int id, String name, int hoursLength, int studentsLimit, Metargel metargel, String type) {
+    public Course createCourse(int id, String name, int hoursLength, int studentsLimit, Metargel metargel, CourseType type) {
         Course newCourse = new Course(id, name, hoursLength, studentsLimit, null, this, metargel, type);
         courses.add(newCourse);
         return newCourse;
