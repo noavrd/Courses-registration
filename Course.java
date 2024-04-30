@@ -37,8 +37,11 @@ public class Course {
         return studentsLimit;
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
+    public void printStudentsNames() {
+        System.out.println("Registered students to " + this.name);
+        for(Student student: this.students){
+            System.out.println(student.getFirstName() + " " + student.getLastName());
+        }
     }
 
     public Professor getProfessor() {
@@ -61,10 +64,18 @@ public class Course {
     
     public void removeStudent(Student student) {
         students.remove(student);
+    
     }
 
     // a function to check if a student can register this class
-    public boolean openToRegister(){
+    public boolean openToRegister() {
         return students.size() < studentsLimit;
+    }
+
+    // used when deleting a course
+    public void removeAllStudents( ){
+        for(Student student: this.students){
+            student.unRegisterToCourse(this);
+         }
     }
 }

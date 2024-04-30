@@ -2,22 +2,21 @@ import java.util.ArrayList;
 
 public class Student extends Person{
 
-    private ArrayList<Course> courses;
 
-    public Student(int id, String firstName, String lastName, String password, Course courses) {
-        super(id, firstName, lastName, password);
-        this.courses = new ArrayList<Course>();
+    public Student(int id, String firstName, String lastName, String password, ArrayList<Course> courses) {
+        super(id, firstName, lastName, password, courses);
     }
 
-    public ArrayList<Course> getCourses() {
-        return courses;
-    }
     
     public void registerToCourse(Course course){
         course.addStudent(this);
+        courses.add(course);
     }
 
-    public void unRegisterToCourse(Course course){
+    // function to remove student from the course. it will first remove the student from the course student list and then remove the course from the student courses    public void unRegisterToCourse(Course course){
+        public void unRegisterToCourse(Course course){
         course.removeStudent(this);
+        courses.remove(course);
     }
+
 }
