@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Person implements Observer{
+public class Person implements Observer {
     private int id;
     private String firstName;
     private String lastName;
-    // לבדוק איך לבצע את הגישה עם סיסמא
+    // check how to do password
     private String password;
     public ArrayList<Course> courses;
 

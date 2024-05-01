@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-// הוספתי אינום על מנת לוודא שאכן יתקבל רק אחד מ3 סוגי הקורסים ולא סוג אחר בטעות
+// I added enum to make sure only this types of classes will be excepted
 enum CourseType {
     MANDATORY,
     ELECTIVE,

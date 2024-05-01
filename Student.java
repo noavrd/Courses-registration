@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Student extends Person{
+public class Student extends Person {
 
 
     public Student(int id, String firstName, String lastName, String password, ArrayList<Course> courses) {
@@ -11,6 +11,7 @@ public class Student extends Person{
     public void registerToCourse(Course course){
         course.addStudent(this);
         courses.add(course);
+        System.out.println("Registered successfully");
     }
 
     // function to remove student from the course. it will first remove the student from the course student list and then remove the course from the student courses    public void unRegisterToCourse(Course course){
@@ -18,5 +19,6 @@ public class Student extends Person{
         course.removeStudent(this);
         courses.remove(course);
     }
+
 
 }
