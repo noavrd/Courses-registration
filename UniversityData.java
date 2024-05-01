@@ -100,17 +100,21 @@ public class UniversityData {
         metargelim.add(metargel);
     }
 
-    // public Metargel chooseMetargel() {
-    //     for ( int i = 0; i < metargelim.size(); i++ ) {
-    //         int courseNum = i + 1;
-    //         System.out.println( courseNum + " " + courses.get(i).getName());
-    //     }
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
 
-    //     System.out.println("Enter your choice:");
-    //     int currentChoice = scanner.nextInt() - 1;
-    //     Course chosen = metargelim.get(currentChoice);
-    //     return chosen;
-    // }
+    public Metargel chooseMetargel() {
+        for ( int i = 0; i < metargelim.size(); i++ ) {
+            int courseNum = i + 1;
+            System.out.println( courseNum + " " + metargelim.get(i).getFirstName() + " " + metargelim.get(i).getLastName());
+        }
+
+        System.out.println("Enter your choice:");
+        int currentChoice = scanner.nextInt() - 1;
+        Metargel chosen = metargelim.get(currentChoice);
+        return chosen;
+    }
     
     public void courseToRegister(Student student) {
         for ( int i = 0; i < courses.size(); i++ ) {

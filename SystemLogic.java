@@ -169,66 +169,87 @@ public class SystemLogic {
             getStudentOptions( user);
         }
 
-        // if (user instanceof Professor) {
-        //     getProfessorOptions(user);
-        // }
+        if (user instanceof Professor) {
+            getProfessorOptions(user);
+        }
     }
 
-    // public void getProfessorOptions(Person user) {
-    //     Professor professor = (Professor) user;
+    public void getProfessorOptions(Person user) {
+        Professor professor = (Professor) user;
 
-    //     System.out.println("What would you like to do?");
-    //     System.out.println("1. Create new course");
-    //     System.out.println("2. Cancel a course");
-    //     System.out.println("3. Watch my courses");
+        System.out.println("What would you like to do?");
+        System.out.println("1. Create new course");
+        System.out.println("2. Cancel a course");
+        System.out.println("3. Watch my courses");
 
-    //     System.out.println("Enter your choice:");
-    //     int choice = scanner.nextInt();
-    //     scanner.nextLine();
+        System.out.println("Enter your choice:");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
 
-    //     switch (choice) {
-    //         case 1:
-    //         System.out.print("Enter course ID: ");
-    //         int id = scanner.nextInt();
-    //         scanner.nextLine(); // consume newline
-    //         System.out.print("Enter course name: ");
-    //         String name = scanner.nextLine();
-    //         System.out.print("Enter hours length: ");
-    //         String hours = scanner.nextLine();
-    //         System.out.print("Enter studentsLimit: ");
-    //         String limit = scanner.nextLine();
-    //         System.out.print("Choose metargel: ");
-    //         Metargel metargel = instance.chooseMetargel();
-    //         System.out.print("Enter course type (mandatory/elective/seminar): ");
-    //         String courseType = scanner.nextLine();
+        switch (choice) {
+            case 1:
+            System.out.print("Enter course ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+            System.out.print("Enter course name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter hours length: ");
+            String hours = scanner.nextLine();
+            System.out.print("Enter studentsLimit: ");
+            String limit = scanner.nextLine();
+            System.out.print("Choose metargel: ");
+            Metargel metargel = instance.chooseMetargel();
+            System.out.print("Enter course type (mandatory/elective/seminar): ");
+            String courseType = scanner.nextLine();
 
-    //             // professor.createCourse(id, name, choice, id, metargel, courseType);
+            Course newCourse = professor.createCourse(id, name, choice, id, metargel, courseType);
+            instance.addCourse(newCourse);
             
 
 
 
-    //         // currentUserType = userType;
-    //         // professor.createCourse(id, name, choice, id, metargel, courseType.toUpperCase());
+            // currentUserType = userType;
+            // professor.createCourse(id, name, choice, id, metargel, courseType.toUpperCase());
                
-    //             break;
+                break;
 
-    //         case 2:
-    //             System.out.println("What course do you want to cancel?");
-    //             instance.courseToCancel(professor);
+            case 2:
+                System.out.println("What course do you want to cancel?");
+                instance.courseToDelete(professor);
 
 
-    //         break;
+            break;
 
-    //         case 3:
-    //             professor.printCourses();
-    //         break;
+            case 3:
+                professor.printCourses();
+            break;
 
-    //         default:
-    //             System.out.println("Invalid choice!");
+            default:
+                System.out.println("Invalid choice!");
 
-    //     }
+        }
 
-    // }
+        System.out.println("Do you want to continue?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+
+        System.out.println("Enter your choice");
+        choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                getProfessorOptions(professor);
+                break;
+
+            case 2:
+            break;
+
+            default:
+                System.out.println("Invalid choice!");
+
+        }
+
+    }
 
 
     public void getStudentOptions(Person user) {
