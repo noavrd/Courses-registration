@@ -9,7 +9,6 @@ public class Main {
 
         boolean exit = false;
         while (!exit) {
-            // if (system.)
             boolean firstTime = true;
             if ( firstTime ){
                 System.out.println("Welcome to course registration system! ");
@@ -28,39 +27,22 @@ public class Main {
             String currentUserType = "";
             switch (choice) {
                 case 1:
-                    System.out.print("Enter ID: ");
-                    int id1 = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
-                    System.out.print("Enter password: ");
-                    String password1 = scanner.nextLine();
-                    System.out.print("Enter first name: ");
-                    String firstName = scanner.nextLine();
-                    System.out.print("Enter last name: ");
-                    String lastName = scanner.nextLine();
-                    System.out.print("Enter user type (student/professor/metargel): ");
-                    String userType = scanner.nextLine();
-                    currentUserType = userType;
-                    system.SignIn(id1, password1, firstName, lastName, userType);
+                    system.signInDetails(currentUserType);
                     break;
 
                 case 2:
-                    System.out.print("Enter ID: ");
-                    int id2 = scanner.nextInt();
-                    scanner.nextLine(); // consume newline
-                    System.out.print("Enter password: ");
-                    String password2 = scanner.nextLine();
-                    system.logIn(id2, password2);
+                    system.logInDetails(currentUserType);
                     break;
 
-                case 3:
-                    System.out.print("Enter ID: ");
-                    int id3 = scanner.nextInt();
-                    system.logOut(id3);
-                    break;
+                // case 3:
+                //     System.out.print("Enter ID: ");
+                //     int id3 = scanner.nextInt();
+                //     system.logOut(id3);
+                //     break;
 
-                case 4:
-                    exit = true;
-                    break;
+                // case 4:
+                //     exit = true;
+                //     break;
 
                 default:
                     System.out.println("Invalid choice!");

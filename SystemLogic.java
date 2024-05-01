@@ -106,9 +106,32 @@ public class SystemLogic {
 
     }
 
+    public void signInDetails(String currentUserType){
+        System.out.print("Enter ID: ");
+        int id1 = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter password: ");
+        String password1 = scanner.nextLine();
+        System.out.print("Enter first name: ");
+        String firstName = scanner.nextLine();
+        System.out.print("Enter last name: ");
+        String lastName = scanner.nextLine();
+        System.out.print("Enter user type (student/professor/metargel): ");
+        String userType = scanner.nextLine();
+        currentUserType = userType;
+        SignIn(id1, password1, firstName, lastName, userType);
+    }
 
+    public void logInDetails(String currentUserType) {
+        System.out.print("Enter ID: ");
+        int id2 = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Enter password: ");
+        String password2 = scanner.nextLine();
+        logIn(id2, password2, currentUserType);
+    }
 
-    public boolean logIn(int id, String password){
+    public boolean logIn(int id, String password, String currentUserType){
         if (!checkCapacity()) {
             System.err.println("Users capacity is full. Try again later");
             return false;
@@ -148,6 +171,27 @@ public class SystemLogic {
         }
 
         System.err.println("Id or password incorrect. Try again");
+        System.out.println("What do you want to do next?");
+        System.out.println("1. Sign in");
+        System.out.println("2. Log in");
+
+        System.out.println("Enter your choice");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                signInDetails(currentUserType);
+                break;
+
+            case 2:
+                logInDetails(currentUserType);
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+
+        }
+
         return false;
 
     }
@@ -169,8 +213,52 @@ public class SystemLogic {
             getStudentOptions( user);
         }
 
-        if (user instanceof Professor) {
+       else if (user instanceof Professor) {
             getProfessorOptions(user);
+        }
+
+        else if (user instanceof Metargel) {
+            getMetargelOptions(user);
+        }
+    }
+
+    public void getMetargelOptions(Person user) {
+        Metargel metargel = (Metargel) user;
+        System.out.println("What would you like to do?");
+        System.out.println("1. Watch my courses");
+
+        System.out.println("Enter your choice:");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice){
+            case 1:
+                metargel.printCourses();
+                break;
+            
+            default:
+              System.out.println("Invalid choice!");
+        }
+
+        System.out.println("What do you want to do next?");
+        System.out.println("1. Continue");
+        System.out.println("2. Log out");
+
+        System.out.println("Enter your choice");
+        choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                getMetargelOptions(metargel);
+                break;
+
+            case 2:
+                logOut(metargel.getId());
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+
         }
     }
 
@@ -188,29 +276,22 @@ public class SystemLogic {
 
         switch (choice) {
             case 1:
-            System.out.print("Enter course ID: ");
-            int id = scanner.nextInt();
-            scanner.nextLine(); // consume newline
-            System.out.print("Enter course name: ");
-            String name = scanner.nextLine();
-            System.out.print("Enter hours length: ");
-            String hours = scanner.nextLine();
-            System.out.print("Enter studentsLimit: ");
-            String limit = scanner.nextLine();
-            System.out.print("Choose metargel: ");
-            Metargel metargel = instance.chooseMetargel();
-            System.out.print("Enter course type (mandatory/elective/seminar): ");
-            String courseType = scanner.nextLine();
+                System.out.print("Enter course ID: ");
+                int id = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+                System.out.print("Enter course name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter hours length: ");
+                String hours = scanner.nextLine();
+                System.out.print("Enter studentsLimit: ");
+                String limit = scanner.nextLine();
+                System.out.print("Choose metargel: ");
+                Metargel metargel = instance.chooseMetargel();
+                System.out.print("Enter course type (mandatory/elective/seminar): ");
+                String courseType = scanner.nextLine();
 
-            Course newCourse = professor.createCourse(id, name, choice, id, metargel, courseType);
-            instance.addCourse(newCourse);
-            
-
-
-
-            // currentUserType = userType;
-            // professor.createCourse(id, name, choice, id, metargel, courseType.toUpperCase());
-               
+                Course newCourse = professor.createCourse(id, name, choice, id, metargel, courseType);
+                instance.addCourse(newCourse);
                 break;
 
             case 2:
@@ -229,9 +310,9 @@ public class SystemLogic {
 
         }
 
-        System.out.println("Do you want to continue?");
-        System.out.println("1. Yes");
-        System.out.println("2. No");
+        System.out.println("What do you want to do next?");
+        System.out.println("1. Continue");
+        System.out.println("2. Log out");
 
         System.out.println("Enter your choice");
         choice = scanner.nextInt();
@@ -242,13 +323,13 @@ public class SystemLogic {
                 break;
 
             case 2:
-            break;
+                logOut(professor.getId());
+                break;
 
             default:
                 System.out.println("Invalid choice!");
 
         }
-
     }
 
 
@@ -286,9 +367,9 @@ public class SystemLogic {
 
         }
 
-        System.out.println("Do you want to continue?");
-        System.out.println("1. Yes");
-        System.out.println("2. No");
+        System.out.println("What do you want to do next?");
+        System.out.println("1. Continue");
+        System.out.println("2. Log out");
 
         System.out.println("Enter your choice");
         choice = scanner.nextInt();
@@ -299,7 +380,8 @@ public class SystemLogic {
                 break;
 
             case 2:
-            break;
+                logOut(student.getId());
+                break;
 
             default:
                 System.out.println("Invalid choice!");

@@ -28,9 +28,9 @@ public class UniversityData {
         Professor professor3 = new Professor(3, "ela", "bor", "1", new ArrayList<>());
     
         // Create metargelim
-        Metargel metargel1 = new Metargel(1, "roni", "mil", "1", new ArrayList<>());
-        Metargel metargel2 = new Metargel(2, "dani", "cl", "1", new ArrayList<>());
-        Metargel metargel3 = new Metargel(3, "nora", "ja", "1", new ArrayList<>());
+        Metargel metargel1 = new Metargel(4, "roni", "mil", "1", new ArrayList<>());
+        Metargel metargel2 = new Metargel(5, "dani", "cl", "1", new ArrayList<>());
+        Metargel metargel3 = new Metargel(6, "nora", "ja", "1", new ArrayList<>());
     
         // Create CourseType enum instances
         CourseType mandatory = CourseType.MANDATORY;
