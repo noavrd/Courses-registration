@@ -8,6 +8,18 @@ public class Professor extends Person {
 
     public Course createCourse(int id, String name, int hoursLength, int studentsLimit, Metargel metargel, String type) {
         Course newCourse = null;
+
+        // check if course name already exist for that professor
+        for (Course course: courses) {
+            System.out.println(course.getName());
+
+
+            if (course.getName().equals(name)){
+                System.out.println("Course already exist, can't create another one");
+                return null;
+            }
+        }
+       
         if (type.equals("mandatory")) {
             newCourse = new MandatoryCourse(id, name, hoursLength, studentsLimit, new ArrayList<>(), this, metargel);
         } else if (type.equals("seminar")) {
