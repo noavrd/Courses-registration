@@ -134,6 +134,8 @@ public class UniversityData {
             student.registerToCourse(chosen);    
         }
 
+    
+
     }
 
     // Method to choose a course to cancel for a single student 
@@ -143,10 +145,20 @@ public class UniversityData {
             System.out.println( courseNum + " " + student.courses.get(i).getName());
         }
 
+
         System.out.println("Enter your choice:");
         int currentChoice = scanner.nextInt() - 1;
         Course chosen = student.courses.get(currentChoice);
-        student.unRegisterToCourse(chosen);    
+        
+        boolean close = !chosen.openToRegister(); 
+        student.unRegisterToCourse(chosen);   
+        
+        // check if course was close to register before cancellation and if now is open because a student unregistered.
+        // if so send notification it's open to register again to students that registered to this course
+        if (close && chosen.openToRegister()) {
+            String message = chosen.getName() + " is now open to register!";
+            chosen.notify(message);
+        }
         
     }
 
