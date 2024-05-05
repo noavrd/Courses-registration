@@ -1,3 +1,7 @@
+/**
+ * A Professor is a type of Person who has the ability to create and delete courses.
+ * Professors inherit properties and methods from the Person class.
+ */
 import java.util.ArrayList;
 
 public class Professor extends Person {
@@ -6,6 +10,8 @@ public class Professor extends Person {
         super(id, firstName, lastName, password, courses);
     }
 
+
+    // A method to create new classes - only professor can do this
     public Course createCourse(int id, String name, int hoursLength, int studentsLimit, Metargel metargel, String type) {
         Course newCourse = null;
 

@@ -1,31 +1,30 @@
+/**
+* The courses registration main system. 
+* It includes functionalities for user login, sign-in, and logout, as well as options for different user types.
+*/
 import java.util.ArrayList;
 import java.util.Scanner;
-
-    /**
-     * The courses registration main system. 
-     * In here we have all the users log in, sign in and log out functions.
-     */
 
 public class SystemLogic {
     Scanner scanner = new Scanner(System.in);
 
     private int capacityConnectedUsers; 
     private ArrayList<Person> currentConnectedUsers;  
+    // Singleton instance of UniversityData class
     private UniversityData instance; 
-    // private Person lastUserEntered;
     
+    // Constructor to initialize system logic
     public SystemLogic() {
         this.capacityConnectedUsers = 100;
         this.currentConnectedUsers = new ArrayList<>();
         this.instance = UniversityData.getInstance();
-        // this.lastUserEntered = null;
     }
 
+    // Method to check if the system can log in more users
     public boolean checkCapacity() {
         return currentConnectedUsers.size() < capacityConnectedUsers;
     }
 
-   
     /**
      * @param id
      * @param password
@@ -37,7 +36,9 @@ public class SystemLogic {
      * a function that check if the user is already registered by checking for all users type if it has the given id.
      * if it's not then create new user
      */
+
     public boolean SignIn(int id, String password, String firstName, String lastName, String userType) {
+        // check capacity
         if (!checkCapacity()) {
             System.err.println("Users capacity is full. Try again later");
             return false;
@@ -45,6 +46,7 @@ public class SystemLogic {
 
         ArrayList<Student> studentsInstance = this.instance.getStudents();
 
+        // Check if the user already exists
         for(Student student: studentsInstance) {
             if ( student.getId() == id ) {
                 System.out.println("User exist. Please log in");
@@ -63,7 +65,6 @@ public class SystemLogic {
             }
         }
 
-        
         ArrayList<Metargel> metargelimInstance = this.instance.getMetargelim();
         
         for(Metargel metargel: metargelimInstance) {
@@ -106,10 +107,11 @@ public class SystemLogic {
 
     }
 
+    // Method to get sign in details from user
     public void signInDetails(String currentUserType){
         System.out.print("Enter ID: ");
         int id1 = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); 
         System.out.print("Enter password: ");
         String password1 = scanner.nextLine();
         System.out.print("Enter first name: ");
@@ -122,6 +124,7 @@ public class SystemLogic {
         SignIn(id1, password1, firstName, lastName, userType);
     }
 
+    // Method to get login details from user
     public void logInDetails(String currentUserType) {
         System.out.print("Enter ID: ");
         int id2 = scanner.nextInt();
@@ -131,12 +134,15 @@ public class SystemLogic {
         logIn(id2, password2, currentUserType);
     }
 
+    // Method for user login
     public boolean logIn(int id, String password, String currentUserType){
+        //check capacity
         if (!checkCapacity()) {
             System.err.println("Users capacity is full. Try again later");
             return false;
         }
 
+        // check if id and password matching
         ArrayList<Student> studentsInstance = this.instance.getStudents();
 
         for(Student student: studentsInstance) {
@@ -191,11 +197,10 @@ public class SystemLogic {
                 System.out.println("Invalid choice!");
 
         }
-
         return false;
-
     }
 
+    // Method for user logout
     public void logOut(int id){
         for(Person user: currentConnectedUsers){
             if(user.getId() == id){
@@ -206,6 +211,7 @@ public class SystemLogic {
         }
     }
     
+    // Method to display options based on user type
     public void getOptions() {
         Person user = currentConnectedUsers.get(currentConnectedUsers.size() - 1);
 
@@ -278,7 +284,7 @@ public class SystemLogic {
             case 1:
                 System.out.print("Enter course ID: ");
                 int id = scanner.nextInt();
-                scanner.nextLine(); // consume newline
+                scanner.nextLine(); 
                 System.out.print("Enter course name: ");
                 String name = scanner.nextLine();
                 System.out.print("Enter hours length: ");
@@ -339,6 +345,10 @@ public class SystemLogic {
         System.out.println("1. Register to a course");
         System.out.println("2. Cancel a course");
         System.out.println("3. Watch my courses");
+        System.out.println("4. Subscribe to notifications");
+        System.out.println("5. Unsubscribe to notifications");
+
+
 
         System.out.println("Enter your choice:");
         int choice = scanner.nextInt();
@@ -361,6 +371,16 @@ public class SystemLogic {
             case 3:
                 student.printCourses();
             break;
+
+            case 4:
+                System.out.println("What class do you want to subscribe for notification?");
+                instance.courseToSubscribeOrUnsubscribe(student, true);
+                break;
+
+            case 5:
+                System.out.println("What class do you want to unsubscribe for notification?");
+                instance.courseToSubscribeOrUnsubscribe(student, false);
+                break;
 
             default:
                 System.out.println("Invalid choice!");

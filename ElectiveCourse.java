@@ -1,3 +1,10 @@
+/**
+ * This Java class represents an ElectiveCourse, which is a specific type of Course.
+ * It extends the Course class, inheriting its attributes and methods.
+ * The constructor initializes an ElectiveCourse object with the provided parameters,
+ * specifying the course type as ELECTIVE.
+ */
+
 import java.util.ArrayList;
 
 public class ElectiveCourse extends Course {

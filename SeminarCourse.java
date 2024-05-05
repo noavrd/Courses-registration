@@ -1,4 +1,9 @@
-import java.util.ArrayList;
+/**
+ * This file contains the definition of the SeminarCourse class.
+ * SeminarCourse is a subclass of Course, representing a specific type of course within the system.
+ */
+
+ import java.util.ArrayList;
 
 public class SeminarCourse extends Course {
 

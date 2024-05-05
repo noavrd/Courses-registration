@@ -1,18 +1,21 @@
+/** The UniversityData class serves as a repository for storing information about the
+* university's courses, students, professors, and metargelim.
+* It implements the Singleton design pattern to ensure a single and exclusive instance of UniversityData throughout the system.
+*/
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UniversityData {
-
-    // שימוש ביוניבסטי דאטה מאפשר לנו להשתמש בתבנית עיצוב singelton
-    // וכך מאפשרת שימוש יחיד ובלעדי ביוניבריסטי דאטה
     Scanner scanner = new Scanner(System.in);
 
+    // Singleton instance
     private static UniversityData instance = null;
     private ArrayList<Course> courses;
     private ArrayList<Student> students;
     private ArrayList<Professor> professors;
     private ArrayList<Metargel> metargelim;
 
+    // use this incase you don't want any mock data
     // private UniversityData(){
     //     this.courses = new ArrayList<>();
     //     this.students = new ArrayList<>();
@@ -21,7 +24,7 @@ public class UniversityData {
     // }
 
 
-    // create mock data
+    // Private constructor to initialize UniversityData with mock data
     private UniversityData() {
         Professor professor1 = new Professor(1, "eli", "ron", "1", new ArrayList<>());
         Professor professor2 = new Professor(2, "jane", "gal", "1", new ArrayList<>());
@@ -104,6 +107,7 @@ public class UniversityData {
         courses.add(course);
     }
 
+    // Method to choose a metargel
     public Metargel chooseMetargel() {
         for ( int i = 0; i < metargelim.size(); i++ ) {
             int courseNum = i + 1;
@@ -116,6 +120,7 @@ public class UniversityData {
         return chosen;
     }
     
+    // Method to choose a course to register for
     public void courseToRegister(Student student) {
         for ( int i = 0; i < courses.size(); i++ ) {
             int courseNum = i + 1;
@@ -131,6 +136,7 @@ public class UniversityData {
 
     }
 
+    // Method to choose a course to cancel for a single student 
     public void courseToCancel(Student student) {
         for ( int i = 0; i < student.courses.size(); i++ ) {
             int courseNum = i + 1;
@@ -144,6 +150,7 @@ public class UniversityData {
         
     }
 
+    // Method to cancel a course completely
     public void courseToDelete(Professor professor) {
         for ( int i = 0; i < professor.courses.size(); i++ ) {
             int courseNum = i + 1;
@@ -154,6 +161,24 @@ public class UniversityData {
         int currentChoice = scanner.nextInt() - 1;
         Course chosen = professor.courses.get(currentChoice);
         professor.deleteCourse(chosen);
+    }
+
+    // Method to subscribe or unsubscribe to course notifications
+    public void courseToSubscribeOrUnsubscribe(Student student, boolean subscribe) {
+        for ( int i = 0; i < courses.size(); i++ ) {
+            int courseNum = i + 1;
+            System.out.println( courseNum + " " + courses.get(i).getName());
+        }
+
+        System.out.println("Enter your choice:");
+        int currentChoice = scanner.nextInt() - 1;
+        Course chosen = courses.get(currentChoice);
+        if (subscribe) {
+            chosen.subscribe(student);
+        } else {
+            chosen.unsubscribe(student);
+        }
+
     }
 
 }

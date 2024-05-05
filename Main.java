@@ -5,8 +5,6 @@ public class Main {
         SystemLogic system = new SystemLogic();
         Scanner scanner = new Scanner(System.in);
 
-        
-
         boolean exit = false;
         while (!exit) {
             boolean firstTime = true;
@@ -18,11 +16,9 @@ public class Main {
 
             System.out.println("1. Sign In");
             System.out.println("2. Log In");
-            // System.out.println("3. Log Out");
-            // System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); 
 
             String currentUserType = "";
             switch (choice) {
@@ -33,16 +29,6 @@ public class Main {
                 case 2:
                     system.logInDetails(currentUserType);
                     break;
-
-                // case 3:
-                //     System.out.print("Enter ID: ");
-                //     int id3 = scanner.nextInt();
-                //     system.logOut(id3);
-                //     break;
-
-                // case 4:
-                //     exit = true;
-                //     break;
 
                 default:
                     System.out.println("Invalid choice!");

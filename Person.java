@@ -1,3 +1,9 @@
+/**
+ * The definition of the Person class.
+ * A Person represents an individual within the system and holds information such as ID, first name,
+ * last name, password, and a list of courses they are enrolled in.
+ * It implements the Observer interface to receive updates.
+ */
 import java.util.ArrayList;
 
 public class Person implements Observer {
@@ -35,6 +41,7 @@ public class Person implements Observer {
         return courses;
     }
 
+    // print person courser he register to
     public void printCourses() {
         System.out.println("Your courses: ");
         for(Course course: this.courses){
