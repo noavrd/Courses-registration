@@ -4,11 +4,8 @@ public class Person implements Observer {
     private int id;
     private String firstName;
     private String lastName;
-    // check how to do password
     private String password;
     public ArrayList<Course> courses;
-
-    //  private final ArrayList<Notification> notifications;
 
     public Person(int id, String firstName, String lastName, String password, ArrayList<Course> courses) {
         this.id = id;
@@ -45,7 +42,7 @@ public class Person implements Observer {
         }
     }
 
-    @Override
+     @Override
     public void update(String message) {
         System.out.println("New message: " + message);
     }
